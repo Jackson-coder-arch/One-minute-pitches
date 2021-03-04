@@ -6,7 +6,7 @@ from datetime import datetime
 
 
 class User(UserMixin,db.Model):
-    __tablename__ = 'users' 
+    __tablename__ = 'users'
 
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
@@ -16,6 +16,7 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
     pitches = db.relationship('Pitch',backref = 'user',lazy="dynamic")
     comments = db.relationship('Comment',backref = 'user',lazy="dynamic")
+
 
     @property
     def password(self):
@@ -31,6 +32,11 @@ class User(UserMixin,db.Model):
 
     def verify_password(self,password):
         return check_password_hash(self.pass_secure,password)
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
+
+
 
     def __repr__(self):
         return f'User {self.username}'
@@ -48,6 +54,10 @@ class Pitch(db.Model):
     published_at = db.Column(db.DateTime, default = datetime.utcnow)    
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
     
 
     def __repr__(self):
@@ -61,7 +71,12 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
             
-    published_at = db.Column(db.DateTime, default = datetime.utcnow)  
+    published_at = db.Column(db.DateTime, default = datetime.utcnow) 
+
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit() 
 
     def __repr__(self):
         return f'User {self.description}'
