@@ -35,23 +35,23 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-class Pitch(db.Model):
-    __tablename__ = 'pitches'
+# class Pitch(db.Model):
+#     __tablename__ = 'pitches'
 
-    id = db.Column(db.Integer,primary_key = True)
-    title =  db.Column(db.String(255)) 
-    pitch_content = db.Column(db.String(255))
-    author = db.Column(db.String(255))
-    category = db.Column(db.String(255))
-    upvote = db.Column(db.Integer)
-    downvote = db.Column(db.Integer)
-    published_at = db.Column(db.DateTime, default = datetime.utcnow)    
-    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
+#     id = db.Column(db.Integer,primary_key = True)
+#     title =  db.Column(db.String(255)) 
+#     pitch_content = db.Column(db.String(255))
+#     author = db.Column(db.String(255))
+#     category = db.Column(db.String(255))
+#     upvote = db.Column(db.Integer)
+#     downvote = db.Column(db.Integer)
+#     published_at = db.Column(db.DateTime, default = datetime.utcnow)    
+#     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+#     comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
     
 
-    def __repr__(self):
-        return f'User {self.description}'
+#     def __repr__(self):
+#         return f'User {self.description}'
 
 class Comment(db.Model):
     __tablename__ = 'comments'
