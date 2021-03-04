@@ -6,7 +6,6 @@ class Config:
 
     
     SECRET_KEY = '12345'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://jack:jack@localhost/pitch6'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     UPLOADED_PHOTOS_DEST ='app/static/photos'
@@ -21,13 +20,13 @@ class Config:
 
 class ProdConfig(Config):
     
-    # SQLALCHEMY_DATABASE_URL=os.environ.get("DATABASE_URL")
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://jack:jack@localhost/pitch6'
+    SQLALCHEMY_DATABASE_URL=os.environ.get("DATABASE_URL")
 
 
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://jack:jack@localhost/pitch6'
+    
+    SQLALCHEMY_DATABASE_URL=os.environ.get("DATABASE_URL")
 
     DEBUG = True
 
