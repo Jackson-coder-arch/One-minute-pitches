@@ -19,6 +19,7 @@
 To get the code..
 
 1. Cloning the repository:
+   https://github.com/Jackson-coder-arch/One-minute-pitches.git
 
 2. Move to the folder and install requirements
 cd minute-pitch
